@@ -11,9 +11,11 @@ export const CryptoProvider = ({children}) => {
             const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en').then(res => res.json()).then(json => json);
 
             console.log(data);
+            setCryptoData(data);
         } catch (error) {
             console.log(error);
         }
+    }
         
         //Get data on load
         useLayoutEffect(() => {
@@ -22,9 +24,8 @@ export const CryptoProvider = ({children}) => {
 
         //Return Data
         return(
-            <CryptoContext.Provider value={{}}>
+            <CryptoContext.Provider value={{cryptoData}}>
                 {children}
             </CryptoContext.Provider>
-        )
+        );
     }
-}
