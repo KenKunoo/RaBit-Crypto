@@ -27,12 +27,12 @@ const SearchInput = ({handleSearch}) => {
     {
         searchText.length > 0 ?
           
-         <ul className ='absolute top-11 right-0 h-96 w-full rounded overflow-x-hidden py-2 bg-gray-200 bg-opacity-60 backdrop-blur-md'> 
+         <ul className ='absolute top-11 right-0 h-96 w-96 rounded overflow-x-hidden py-2 bg-gray-200 bg-opacity-60 backdrop-blur-md'> 
             {
                 searchData ?
 
-                searchData.map(coin => {return <li className="flex items-center ml-4 my-2 cursor-pointer">
-                    <img className='w-[1.4rem] h-[1.4rem] mx-1.5' src={coin.thumb} alt={coin.name} />
+                searchData.map((coin) => {return <li className="flex items-center ml-4 my-2 cursor-pointer" key={coin.id}>
+                    <img className='w-[1rem] h-[1rem] mx-1.5' src={coin.thumb} alt={coin.name} />
                     <span>{coin.name}</span>
                     </li>}) : <h2>please wait...</h2>
             }
@@ -42,7 +42,7 @@ const SearchInput = ({handleSearch}) => {
     }
     </>
     )
-}
+};
 
 const Search = () => {
     let {getSearchResult} = useContext(CryptoContext);
@@ -52,10 +52,10 @@ const Search = () => {
     }, 2000)
 
   return (
-    <>
+    <div className = "relative">
      <SearchInput handleSearch={debounceFunc}/>
-    </>
+    </div>
   )
-}
+};
 
 export default Search

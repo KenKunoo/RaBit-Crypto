@@ -18,19 +18,21 @@ export const CryptoProvider = ({children}) => {
         }
     }
         
-
-    //Get Data and convert to json and catch errors
-    const getSearchResult = async () => {
-        try{
-            const data = await fetch('https://api.coingecko.com/api/v3/search?query=${query}').then(res => res.json()).then(json => json);
-
-            console.log(data);
-            setSearchData(data.coins);
+    //Get the search result
+    const getSearchResult = async (query) => {
+        try {
+          const data = await fetch(
+            `https://api.coingecko.com/api/v3/search?query=${query}`
+          )
+            .then((res) => res.json())
+            .then((json) => json);
+    
+          // console.log(data);
+          setSearchData(data.coins);
         } catch (error) {
-            console.log(error);
+          console.log(error);
         }
-    }
-
+      };
         //Get data on load
         useLayoutEffect(() => {
             getCryptoData();
