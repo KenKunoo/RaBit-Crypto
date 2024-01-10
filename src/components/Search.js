@@ -31,7 +31,7 @@ const SearchInput = ({handleSearch}) => {
             {
                 searchData ?
 
-                searchData.map((coin) => {return <li className="flex items-center ml-4 my-2 cursor-pointer" key={coin.id}>
+                searchData.map(coin => {return <li className="flex items-center ml-4 my-2 cursor-pointer" key={coin.id}>
                     <img className='w-[1rem] h-[1rem] mx-1.5' src={coin.thumb} alt={coin.name} />
                     <span>{coin.name}</span>
                     </li>}) : <h2>please wait...</h2>
