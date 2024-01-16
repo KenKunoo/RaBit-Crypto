@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react'
 import searchIcon from "../assets/search-icon.svg"
-import { CryptoContext } from '../context/CryptoContext';
+import { CryptoContext } from './../context/CryptoContext';
 import debounce from 'lodash.debounce';
 
 const SearchInput = ({handleSearch}) => {
     const [searchText, setSearchText] = useState("")
-    let {searchData} = useContext(CryptoContext)
+    let {searchData, setCoinSearch} = useContext(CryptoContext)
 
     let handleInput = (e) => {
         e.preventDefault();
         let query = e.target.value;
         setSearchText(query);
         handleSearch(query);
+    }
+
+    const selectCoin = (coin) => {
+        setCoinSearch(coin)
     }
 
     return (
@@ -31,15 +35,14 @@ const SearchInput = ({handleSearch}) => {
             {
                 searchData ?
 
-                searchData.map(coin => {return <li className="flex items-center ml-4 my-2 cursor-pointer" key={coin.id}>
+                searchData.map(coin => {return <li className="flex items-center ml-4 my-2 cursor-pointer" key={coin.id} onClick={() => selectCoin(coin.id)}>
                     <img className='w-[1rem] h-[1rem] mx-1.5' src={coin.thumb} alt={coin.name} />
                     <span>{coin.name}</span>
                     </li>}) : <h2>please wait...</h2>
             }
         </ul>
 
-        : null
-    }
+        : null }
     </>
     )
 };

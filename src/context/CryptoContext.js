@@ -5,11 +5,15 @@ export const CryptoContext = createContext({});
 export const CryptoProvider = ({children}) => {
     const [cryptoData, setCryptoData] = useState();
     const [searchData, setSearchData] = useState();
+    const [coinSearch, setCoinSearch] = useState("");
+
 
     //Get Data and convert to json and catch errors
     const getCryptoData = async () => {
         try{
-            const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d&locale=en').then(res => res.json()).then(json => json);
+            const data = await fetch(
+            `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinSearch}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d&locale=en`
+            ).then(res => res.json()).then(json => json);
 
             console.log(data);
             setCryptoData(data);
@@ -36,11 +40,11 @@ export const CryptoProvider = ({children}) => {
         //Get data on load
         useLayoutEffect(() => {
             getCryptoData();
-        }, [])
+        }, [coinSearch])
 
         //Return Data
         return(
-            <CryptoContext.Provider value={{cryptoData, searchData, getSearchResult}}>
+            <CryptoContext.Provider value={{cryptoData, searchData, getSearchResult, setCoinSearch}}>
                 {children}
             </CryptoContext.Provider>
         );
