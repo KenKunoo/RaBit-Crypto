@@ -5,7 +5,6 @@ import selectIcon from "../assets/select-icon.svg";
 import { CryptoContext } from '../context/CryptoContext';
 
 const Filters = () => {
-
   let {setCurrency, setSortBy} = useContext(CryptoContext);
   const currencyRef = useRef(null);
 
