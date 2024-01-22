@@ -47,7 +47,7 @@ const Filters = () => {
             <option value="gecko_asc">gecko asc</option>
 
         </select>
-          <img src={selectIcon} alt="select" className ="w-[1rem] h-auto absolute right-7 top-4 pointer-events-none" />
+          
         </label>
 
         <button
