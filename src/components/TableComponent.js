@@ -3,7 +3,6 @@ import { CryptoContext } from './../context/CryptoContext';
 import Pagination from './Pagination';
 
 const TableComponent = () => {
-
   let { cryptoData, currency } = useContext(CryptoContext);
 
   return (
@@ -25,6 +24,7 @@ const TableComponent = () => {
               </tr>
             </thead>
             <tbody>
+
               {
                 cryptoData.map(data => {
                   return (
@@ -63,12 +63,11 @@ const TableComponent = () => {
                       }>{Number(data.price_change_percentage_7d_in_currency).toFixed(2)}
                       </td>
                     </tr>
-                  )
+                  );
                 })}
             </tbody>
           </table> : null}
           </div>
-
           <div className ="flex items-center justify-between mt-4 capitalize h-[2rem]">
           <span>Data provided by <a className ="text-cyan" href="http://www.coingecko.com" target={"blank"}>CoinGecko</a></span>
           <Pagination />
